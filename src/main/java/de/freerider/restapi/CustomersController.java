@@ -176,12 +176,12 @@ class CustomersController implements CustomersAPI {
     }
 
     @Override
-    public ResponseEntity<List<?>> putCustomers(Map<String, Object>[] jsonMap) {
+    public ResponseEntity<List<?>> putCustomers(long id, Map<String, Object>[] jsonMap) {
         ResponseEntity<List<?>> response = null;
         System.err.println(request.getMethod() + " " + request.getRequestURI());
         try {
             for (Map<String, Object> map : jsonMap) {
-                Customer customer = customerRepository.findById(((Number) map.get("id")).longValue()).get();
+                Customer customer = customerRepository.findById(id).get();
                 customer.setName((String) map.get("first"), (String) map.get("name"));
                 customer.addContact((String) map.get("contacts"));
                 customerRepository.save(customer);
@@ -189,7 +189,7 @@ class CustomersController implements CustomersAPI {
             response = new ResponseEntity<List<?>>(HttpStatus.OK);
         } catch (Exception e) {
             System.out.println(e.getMessage());
-            response = new ResponseEntity<List<?>>(HttpStatus.INTERNAL_SERVER_ERROR);
+            response = new ResponseEntity<List<?>>(HttpStatus.NOT_FOUND);
         }
         return response;
     }

@@ -189,7 +189,8 @@ public interface CustomersAPI {
 		value = "{id}"	// relative to interface @RequestMapping
 	)
 	//
-	public ResponseEntity<List<?>> putCustomers( @RequestBody Map<String, Object>[] jsonMap );
+	public ResponseEntity<List<?>> putCustomers(@PathVariable("id") @ApiParam(value = "Customer id", required = true)
+	long id, @RequestBody Map<String, Object>[] jsonMap );
 
 
 	/**
