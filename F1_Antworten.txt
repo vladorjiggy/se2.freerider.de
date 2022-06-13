@@ -1,0 +1,51 @@
+Nr. 1
+
+a) Was ist eine Transaktion?
+
+Eine Transaktion ist ein einzelner Prozess eines Datenbankzugriffs. 
+Wenn eine Transaktion erfolgreich ist, werden alle Datenänderungen, die während der Transaktion vorgenommen wurden, festgeschrieben und werden zu einem dauerhaften Bestandteil der Datenbank. 
+Wenn eine Transaktion auf Fehler stößt und abgebrochen oder rückgängig gemacht werden muss, werden alle Datenänderungen gelöscht.
+
+b) Was bedeutet die ACID‐Eigenschaft für relationale Datenbanken?
+
+A -> Atomicity / Prozesse werden in Einheiten portioniert (Transaktionen)
+C -> Consistency / Konsistenz bezieht sich auf die Eigenschaft, dass Daten, die über Transaktionen aktualisiert werden, die anderen Einschränkungen oder Regeln innerhalb des Datenbanksystems beachten müssen, um die Daten in einem konsistenten Zustand zu halten
+I -> Isolation / Änderungen einer Transaktion haben keinen Einfluss auf eine andere Transaktion. Transaktionen werden sequentiell ausgeführt
+D -> Durability / Garantiert die Persistenz vn bereits durchgeführten Transaktionen. Transaktionen und Datenbankänderungen werden nicht im flüchtigen Speicher aufbewahrt, sondern in einem permanenten Speicher, z. B. auf Festplatten, gespeichert.
+
+c) Was ist ein DB‐Schema?
+
+In einer SQL-Datenbank ist ein Schema eine Liste logischer Strukturen von Daten. Mit anderen Worten: Schemas sind vergleichbar mit separaten Namespaces oder Containern, die zur Verwaltung von Datenbankdateien verwendet werden. Schemas können mit Sicherheitsberechtigungen versehen werden, was sie zu einer wirksamen Methode zur Unterscheidung und zum Schutz von Datenbankobjekten auf der Grundlage von Benutzerzugriffsrechten macht. Sie erhöhen die Stabilität der Datenbank für die sicherheitsbezogene Verwaltung.
+
+d) Nennen Sie je 3 Namen von relationalen und nicht‐relationalen DB Systemen. 
+Nennen Sie die primären Datenformate für die genannten nicht‐relationalen DB Systeme.
+
+SQL: MYSQL, POSTgreSQL, MariaDB
+NO-SQL: MongoDB -> document based, GraphQL -> graph based, Apache Casandra -> column-oriented
+
+e) Geben Sie das SQL‐Statement für eine DB‐Abfrage an, die aus einer Tabelle CUSTOMER einen Kunden mit einem ID: 4 findet
+
+SELECT * FROM Customers WHERE ID=4;
+
+f) Geben Sie das SQL‐Statement an, um eine Tabelle CUSTOMER zu definieren mit Attributen:
+
+ID: long (primary key),
+NAME (String),
+CONTACT (String),
+LAST_LOGIN (Datum, Zeit).
+
+CREATE TABLE Customer (
+    ID int NOT NULL AUTO_INCREMENT,
+    name varchar(255),
+    contact varchar(255),
+    last_login datetime,
+    PRIMARY KEY (ID)
+);
+
+g) Geben Sie ein SQL‐Statement an, um einen neuen Kunden in die DB zu speichern.
+
+INSERT INTO Customer VALUES ('Max Mustermann','test@test.com', '2022-04-02 12:13:14') // keine ID weil AUTO_INCREMENT
+
+h) Geben Sie das SQL‐Statement an, das den Kunden mit ID: 4 in der DB löscht
+
+DELETE FROM Customers WHERE ID=4;
